@@ -7,7 +7,6 @@ use App\Problem;
 use App\User;
 use App\Hint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProblemController extends Controller
 {
