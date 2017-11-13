@@ -29,7 +29,8 @@ class UserTest extends TestCase
             '_token' => csrf_token()
         ]);
 
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/home')
+            ->assertStatus(302);
     }
 
     public function testUnauthenticatedUserMayNotSeeHome()
