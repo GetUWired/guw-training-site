@@ -101,4 +101,30 @@ class ProblemTest extends TestCase
         $response->assertRedirect('/home')
             ->assertSessionHas('message', 'You are not allowed to view that resource.');
     }
+
+    public function testUserSeeProblemPageWhenNoProblemsCompleted()
+    {
+        $user = factory(\App\User::class)->create([
+            'user_level' => 1
+        ]);
+
+        $problems = factory(\App\Problem::class, 10)->create();
+
+        $response = $this->actingAs($user)
+            ->get('/problems/php');
+
+        $response->assertSee('Question');
+    }
+
+    public function testProblemPageHasVariables()
+    {
+        $user = factory(\App\User::class)->create([
+            'user_level' => 1
+        ]);
+
+        $response = $this->actingAs($user)
+            ->get('/problems/php');
+
+        $response->assertViewHasAll(['problemList', 'problemRelations']);
+    }
 }
