@@ -8739,3 +8739,15 @@ select {
           justify-content: space-between;
 }
 
+#leaderboard td {
+  vertical-align: middle;
+}
+
+#leaderboard > tbody > tr.success > td {
+  background: rgba(0, 188, 140, 0.5);
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
