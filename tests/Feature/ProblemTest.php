@@ -115,4 +115,16 @@ class ProblemTest extends TestCase
 
         $response->assertSee('Question');
     }
+
+    public function testProblemPageHasVariables()
+    {
+        $user = factory(\App\User::class)->create([
+            'user_level' => 1
+        ]);
+
+        $response = $this->actingAs($user)
+            ->get('/problems/php');
+
+        $response->assertViewHasAll(['problemList', 'problemRelations']);
+    }
 }
