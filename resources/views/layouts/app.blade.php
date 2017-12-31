@@ -47,6 +47,7 @@
                                 <li><a href="{{ url('/problems/jquery') }}">jQuery</a></li>
                             </ul>
                         </li>
+                        <li><a href="/sets">Problem Sets</a></li>
                         <li><a href="/leaderboard">Leaderboard</a></li>
                     @endauth
                 </ul>

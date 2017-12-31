@@ -127,4 +127,18 @@ class ProblemTest extends TestCase
 
         $response->assertViewHasAll(['problemList', 'problemRelations']);
     }
+
+    public function testAuthenticatedUserCanViewSingleProblemPage()
+    {
+        $user = factory(\App\User::class)->create([
+            'user_level' => 1
+        ]);
+
+        $problems = factory(\App\Problem::class, 10)->create();
+
+        $response = $this->actingAs($user)
+            ->get('/problem/1');
+
+        $response->assertViewHas('problem');
+    }
 }

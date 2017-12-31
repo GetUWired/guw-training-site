@@ -19,6 +19,15 @@ class ProblemController extends Controller
         return view('languages.index', compact('problemList', 'problemRelations'));
     }
 
+    public function show($problem)
+    {
+        $problem = Problem::where('id', $problem)->with('hints')->first();
+        $user = Auth::user();
+        $problemRelations = $user->problems()->get();
+
+        return view('languages.show', compact('problem', 'problemRelations'));
+    }
+
     public function create()
     {
         if (Auth::user()->user_level == 10) {

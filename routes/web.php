@@ -30,3 +30,11 @@ Route::get('/problems/problem-completion-check', 'UserProblemController@problem_
 
 //Languages Routes
 Route::get("/problems/{problem}", "ProblemController@index")->name('problems')->middleware('auth');
+Route::get('/problem/{problem}', "ProblemController@show")->name('singleproblem')->middleware('auth');
+
+
+//Route::resource('sets', 'SetController')->middleware('auth');
+Route::get('/sets', 'SetController@index')->middleware('auth');
+Route::get('/sets/{id}', 'SetController@show')->middleware('auth')->name('singleset');
+Route::post('/sets/problem-completion', 'UserProblemController@store')->name('completeproblem');
+Route::post('/problem/problem-completion', 'UserProblemController@store')->name('completeproblem');
