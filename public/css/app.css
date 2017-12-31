@@ -8693,6 +8693,12 @@ a.list-group-item-danger.active:focus {
   background-color: #464545;
 }
 
+/* Home Styles */
+
+.homePage p {
+  font-size: 18px;
+}
+
 select {
   color: #484848;
 }
