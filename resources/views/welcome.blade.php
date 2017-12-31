@@ -12,8 +12,7 @@
                     problems that
                     can be solved on their own. The second section are Problem Sets which are a grouping of problems
                     using different languages and technologies to build a complete solution. These are intended to be
-                    solved in order to complete the set and once you have completed it you should have a working program
-                    .</p>
+                    solved in order to complete the set and once you have completed it you should have a working program.</p>
                 <p>After you solve your first problem go over it with one of your peers and run through how you
                     went about solving the problem and see if they have any feedback. This will probably work
                     best if you pick someone who has already completed that challenge problem. Once you have
