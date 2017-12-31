@@ -23,4 +23,9 @@ class Problem extends Model
     {
         return $this->belongsToMany('App\User')->withTimestamps()->using('App\UserProblem');
     }
+
+    public function sets()
+    {
+        return $this->hasOne('App\Set');
+    }
 }
