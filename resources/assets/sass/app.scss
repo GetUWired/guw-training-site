@@ -9,6 +9,11 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootswatch/darkly/bootswatch";
 
+/* Home Styles */
+.homePage p {
+  font-size: 18px;
+}
+
 select {
   color: #484848;
 }
@@ -210,6 +215,8 @@ a.itemLink:hover {
 .breadcrumbs {
   margin-bottom: 15px;
 }
+
+
 
 //.flexBetween .arrow {
 //  border-bottom: 3px solid white;
