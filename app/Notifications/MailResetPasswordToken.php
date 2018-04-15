@@ -43,9 +43,9 @@ class MailResetPasswordToken extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject("Reset your password")
+                    ->subject("Please update your password")
                     ->line("Please click the link to set your password.")
                     ->action('Reset Password', url('password/reset', $this->token))
-                    ->line('Thank you for being a friend');
+                    ->line('Thank you.');
     }
 }
