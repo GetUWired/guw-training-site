@@ -71,7 +71,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
-                                    <img class="avatar" src="http://api.adorable.io/avatars/25/<?= str_random(15);?>.png"
+                                    <img class="avatar" src="https://api.adorable.io/avatars/25/<?= str_random(15);?>.png"
                                          alt="Avatar"> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 

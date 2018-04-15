@@ -17,7 +17,8 @@
                         @foreach($leaders as $key => $leader)
                             <tr class="{{ ($loop->first) ? 'success' : '' }}" >
                                 <td>{{ $key + 1 }}</td>
-                                <td><img class="avatar" src="http://api.adorable.io/avatars/50/<?= str_random(15);?>.png" alt="Avatar"> {{ $leader['user']->name }}</td>
+                                <td><img class="avatar" src="https://api.adorable.io/avatars/50/<?= str_random(15);?>.png"
+                                         alt="Avatar"> {{ $leader['user']->name }}</td>
                                 <td>{{ $leader['points'] }}</td>
                             </tr>
                         @endforeach
