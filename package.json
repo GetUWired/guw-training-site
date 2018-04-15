@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "bootswatch": "^3.3.7",
+        "sweetalert": "^2.1.0",
+        "vue-multiselect": "^2.1.0",
         "webpack": "^3.10.0"
     }
 }

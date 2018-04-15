@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Set extends Model
 {
+    use Searchable;
+    
     public function getRouteKeyName()
     {
         return 'set_id';

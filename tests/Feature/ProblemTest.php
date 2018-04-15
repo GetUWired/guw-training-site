@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Problem;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -56,7 +57,7 @@ class ProblemTest extends TestCase
                     '_token' => csrf_token()
                 ]);
 
-        $response->assertSessionHas('message', 'Problem Created!');
+        $response->assertSessionHas('message', 'New Problem Created!');
     }
 
     /**
@@ -108,7 +109,9 @@ class ProblemTest extends TestCase
             'user_level' => 1
         ]);
 
-        $problems = factory(\App\Problem::class, 10)->create();
+        $problems = factory(\App\Problem::class, 10)->create([
+            'type' => 'php'
+        ]);
 
         $response = $this->actingAs($user)
             ->get('/problems/php');
@@ -135,9 +138,10 @@ class ProblemTest extends TestCase
         ]);
 
         $problems = factory(\App\Problem::class, 10)->create();
+        $problem = Problem::first();
 
         $response = $this->actingAs($user)
-            ->get('/problem/1');
+            ->get('/problem/' . $problem->id);
 
         $response->assertViewHas('problem');
     }

@@ -21,7 +21,7 @@
                 </div>
                 <hint-component :hints-list="{{  $question->hints->toJson() }}"></hint-component>
                 <div class="form-group">
-                    {!! Form::submit('Add New Problem', ['class' => 'btn btn-primary btn-block']) !!}
+                    {!! Form::submit('Update Problem', ['class' => 'btn btn-primary btn-block']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

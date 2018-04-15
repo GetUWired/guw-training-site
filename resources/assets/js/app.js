@@ -9,6 +9,9 @@ require('../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert
 
 window.Vue = require('vue');
 
+import swal from 'sweetalert';
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -18,6 +21,7 @@ window.Vue = require('vue');
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('hint-component', require('./components/HintsComponent.vue'));
 Vue.component('type-component', require('./components/TypesComponent.vue'));
+Vue.component('problem-set-builder', require('./components/ProblemSetBuilder'));
 
 const app = new Vue({
     el: '#app',

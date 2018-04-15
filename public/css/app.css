@@ -8951,3 +8951,13 @@ a.itemLink:hover {
   margin-bottom: 15px;
 }
 
+.form-inline {
+  margin: 1em 0;
+}
+
+form.form-inline svg {
+  width: 100px;
+  height: auto;
+  vertical-align: middle;
+}
+

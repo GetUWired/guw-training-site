@@ -31,10 +31,15 @@ Route::get('/problems/problem-completion-check', 'UserProblemController@problem_
 //Languages Routes
 Route::get("/problems/{problem}", "ProblemController@index")->name('problems')->middleware('auth');
 Route::get('/problem/{problem}', "ProblemController@show")->name('singleproblem')->middleware('auth');
+Route::post('/problem/search', "ProblemController@search")->name('problem.search')->middleware('auth');
 
 
 //Route::resource('sets', 'SetController')->middleware('auth');
 Route::get('/sets', 'SetController@index')->middleware('auth');
+Route::get('/sets/create', 'SetController@create')->middleware('auth')->name('setcreate');
+Route::post('/sets/store', 'SetController@store')->middleware('auth')->name('setstore');
+Route::get('/sets/edit/{set}', 'SetController@edit')->middleware('auth')->name('setedit');
+Route::post('/sets/update/{set}', 'SetController@update')->middleware('auth')->name('setupdate');
 Route::get('/sets/{id}', 'SetController@show')->middleware('auth')->name('singleset');
 Route::post('/sets/problem-completion', 'UserProblemController@store')->name('completeproblem');
 Route::post('/problem/problem-completion', 'UserProblemController@store')->name('completeproblem');

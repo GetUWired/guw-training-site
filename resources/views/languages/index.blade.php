@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="container">
+        <div class="col-sm-12">
+            <form action="{{ route('problem.search') }}" method="POST" class="form-inline">
+                @include('forms.search')
+            </form>
+        </div>
+        <div class="col-sm-12">
+             <div class="jumbotron"><h1 class="text-center">{{ $problem }}</h1></div>
+        </div>
         @forelse($problemList as $index => $problem)
             @if( ( ($index + 1) % 2) == 0)
                 <div class="container">
@@ -38,6 +46,9 @@
                                 @endforeach
                             </div>
                         </div>
+                        <div class="card card-block">
+                            <a href="{{ route('editproblem', $problem->id) }}" class="btn btn-success">Edit</a>
+                        </div>
                     </div>
                 </div>
             @if( ( ($index + 1) % 2) == 0)
@@ -46,7 +57,7 @@
             @endif
         @empty
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-12 col-md-offset-0">
                         <div class="panel panel-default">
                             <div class="panel-heading">Problems</div>
                             <div class="panel-body">

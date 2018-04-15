@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\MailResetPasswordToken;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Redirect;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -36,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('admin');
     }
 
     /**
@@ -50,7 +54,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -62,10 +65,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt(str_random(20)),
         ]);
+        
+        $token = app('auth.password.broker')->createToken($user);
+        (new User)->forceFill([
+            'email' => $user->email,
+        ])->notify(new MailResetPasswordToken($token));
+        
+        return $user;
+    }
+    
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }

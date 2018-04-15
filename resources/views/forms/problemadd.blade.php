@@ -14,7 +14,15 @@
                     <label for="type">Type</label>
                     <select name="type" id="type" class="form-control">
                         <option value="php" selected>PHP</option>
+                        <option value="javascript">Javascript</option>
                         <option value="jquery">jQuery</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="sql">SQL</option>
+                        <option value="json">JSON</option>
+                        <option value="xml">XML</option>
+                        <option value="infusionsoft">Infusionsoft</option>
+                        <option value="wordpress">WordPress</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -29,7 +29,10 @@ class SetController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->user_level == 10) {
+            return view('sets.create');
+        }
+        return redirect()->route('home')->with('status', 'warning')->with('message', 'You are not allowed to view that resource.');
     }
 
     /**

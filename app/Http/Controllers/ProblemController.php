@@ -16,7 +16,7 @@ class ProblemController extends Controller
         $user = Auth::user();
         $problemRelations = $user->problems()->get();
 
-        return view('languages.index', compact('problemList', 'problemRelations'));
+        return view('languages.index', compact('problemList', 'problemRelations', 'problem'));
     }
 
     public function show($problem)
@@ -33,7 +33,6 @@ class ProblemController extends Controller
         if (Auth::user()->user_level == 10) {
             return view('forms.problemadd');
         }
-
         return redirect()->route('home')->with('status', 'warning')->with('message', 'You are not allowed to view that resource.');
     }
 
@@ -56,13 +55,13 @@ class ProblemController extends Controller
                 }
 
                 if ($problem) {
-                    return back()->with('status', 'success')->with('message', 'Problem Created!');
+                    return back()->with('status', 'success')->with('title', 'Good Job!')->with('message', 'New Problem Created!');
                 }
             } catch (\Illuminate\Database\QueryException $e) {
-                return back()->with('status', 'warning')->with('message', 'Something went wrong adding the problem.');
+                return back()->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'Something went wrong adding the problem.');
             }
         } else {
-            return redirect()->route('home')->with('status', 'warning')->with('message', 'You are not allowed to view that resource.');
+            return redirect()->route('home')->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'You are not allowed to view that resource.');
         }
     }
 
@@ -124,10 +123,10 @@ class ProblemController extends Controller
         }
 
         if ($problem) {
-            return back()->with('status', 'success')->with('message', 'Problem Created!');
+            return back()->with('status', 'success')->with('title', 'Good Job!')->with('message', 'Problem Updated.');
         }
-
-        return back()->with('status', 'warning')->with('message', 'Something went wrong adding the problem.');
+        
+        return back()->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'Something went wrong updating the problem.');
     }
 
     /**
@@ -139,5 +138,14 @@ class ProblemController extends Controller
     public function destroy(Problem $problem)
     {
         //
+    }
+    
+    public function search(Request $request)
+    {
+        $problemList = Problem::search($request->search_term)->get();
+        $user = Auth::user();
+        $problemRelations = $user->problems()->get();
+
+        return view('languages.search-results', compact('problemList', 'problemRelations'));
     }
 }
