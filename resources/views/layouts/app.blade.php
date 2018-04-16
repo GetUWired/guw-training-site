@@ -74,10 +74,11 @@
                                     <img class="avatar" src="https://api.adorable.io/avatars/25/<?= str_random(15);?>.png"
                                          alt="Avatar"> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/add-problem">Add Problem</a></li>
-                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    @if(Auth::user()->user_level == 10)
+                                        <li><a href="/add-problem">Add Problem</a></li>
+                                        <li><a href="{{ route('register') }}">Register</a></li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
