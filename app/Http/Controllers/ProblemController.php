@@ -89,8 +89,11 @@ class ProblemController extends Controller
      */
     public function edit(Problem $problem, $id)
     {
-        $question = Problem::where('id', $id)->with('hints')->first();
-        return view('forms.problemedit', compact('question'));
+        if (Auth::user()->user_level == 10) {
+            $question = Problem::where('id', $id)->with('hints')->first();
+            return view('forms.problemedit', compact('question'));
+        }
+        return redirect()->route('home')->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'You are not allowed to view that resource.');
     }
 
     /**
@@ -102,31 +105,35 @@ class ProblemController extends Controller
      */
     public function update(Request $request, Problem $problem, $id)
     {
-        $problem = Problem::findOrFail($id);
-        $problem->question = $request->problem;
-        $problem->type = $request->type;
-        $problem->points = $request->points;
-        $problem->save();
-
-        foreach ($request->hinterList as $hint) {
-            $hint = json_decode($hint, true);
-            if (Hint::where('id', $hint['id'])->exists()) {
-                $hintExists = Hint::where('id', $hint['id'])->first();
-                $hintExists->hint = $hint['hint'];
-                $hintExists->save();
-            } else {
-                $newHint = new Hint;
-                $newHint->problem_id = $problem->id;
-                $newHint->hint = $hint['hint'];
-                $newHint->save();
+        if (Auth::user()->user_level == 10) {
+            $problem = Problem::findOrFail($id);
+            $problem->question = $request->problem;
+            $problem->type = $request->type;
+            $problem->points = $request->points;
+            $problem->save();
+    
+            foreach ($request->hinterList as $hint) {
+                $hint = json_decode($hint, true);
+                if (Hint::where('id', $hint['id'])->exists()) {
+                    $hintExists = Hint::where('id', $hint['id'])->first();
+                    $hintExists->hint = $hint['hint'];
+                    $hintExists->save();
+                } else {
+                    $newHint = new Hint;
+                    $newHint->problem_id = $problem->id;
+                    $newHint->hint = $hint['hint'];
+                    $newHint->save();
+                }
             }
+    
+            if ($problem) {
+                return back()->with('status', 'success')->with('title', 'Good Job!')->with('message', 'Problem Updated.');
+            }
+    
+            return back()->with('status', 'warning')->with('title', 'Uh Oh!')
+                         ->with('message', 'Something went wrong updating the problem.');
         }
-
-        if ($problem) {
-            return back()->with('status', 'success')->with('title', 'Good Job!')->with('message', 'Problem Updated.');
-        }
-        
-        return back()->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'Something went wrong updating the problem.');
+        return redirect()->route('home')->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'You are not allowed to view that resource.');
     }
 
     /**
