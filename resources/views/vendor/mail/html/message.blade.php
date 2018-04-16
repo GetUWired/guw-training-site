@@ -2,7 +2,8 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            <img src="{{ secure_asset('images/GUW-new-logo-white-with-blue-background_DEVELOPERS.jpg') }}" alt="{{ config('app.name') }}">
+            <img src="{{ secure_asset('images/GUW-new-logo-white-with-blue-background_DEVELOPERS.jpg') }}" alt="{{ config('app
+            .name') }}" width="100%" height="auto">
         @endcomponent
     @endslot
 
