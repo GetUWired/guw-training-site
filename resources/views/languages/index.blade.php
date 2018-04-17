@@ -46,9 +46,11 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="card card-block">
-                            <a href="{{ route('editproblem', $problem->id) }}" class="btn btn-success">Edit</a>
-                        </div>
+                        @if(Auth::user()->user_level == 10)
+                            <div class="card card-block">
+                                <a href="{{ route('editproblem', $problem->id) }}" class="btn btn-success">Edit</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @if( ( ($index + 1) % 2) == 0)
