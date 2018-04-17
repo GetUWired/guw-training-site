@@ -17,7 +17,7 @@ class AdminRegister
     public function handle($request, Closure $next)
     {
         if(Auth::check() && !Auth::user()->isAdmin()) {
-            return redirect('home');
+            return redirect('home')->with('status', 'warning')->with('title', 'Uh Oh!')->with('message', 'You are not allowed to view that resource.');
         }
         
         return $next($request);
