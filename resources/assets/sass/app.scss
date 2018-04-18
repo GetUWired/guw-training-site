@@ -226,6 +226,20 @@ form.form-inline svg {
     vertical-align: middle;
 }
 
+i.fa.fa-plus-square {
+    color: #00ff95;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s; /* Safari */
+}
+
+i.fa.fa-plus-square:hover {
+    color: #00a379;
+}
+
 //.flexBetween .arrow {
 //  border-bottom: 3px solid white;
 //  width: 100%;
