@@ -30,7 +30,7 @@ class ProblemController extends Controller
 
     public function create()
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             return view('forms.problemadd');
         }
         return redirect()->route('home')->with('status', 'warning')->with('message', 'You are not allowed to view that resource.');
@@ -38,7 +38,7 @@ class ProblemController extends Controller
 
     public function store(Request $request)
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             try {
                 $problem = new Problem;
 
@@ -89,7 +89,7 @@ class ProblemController extends Controller
      */
     public function edit(Problem $problem, $id)
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             $question = Problem::where('id', $id)->with('hints')->first();
             return view('forms.problemedit', compact('question'));
         }
@@ -105,7 +105,7 @@ class ProblemController extends Controller
      */
     public function update(Request $request, Problem $problem, $id)
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             $problem = Problem::findOrFail($id);
             $problem->question = $request->problem;
             $problem->type = $request->type;

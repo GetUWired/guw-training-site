@@ -30,7 +30,7 @@ class SetController extends Controller
      */
     public function create()
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             $types = Problem::all()->pluck('type')->toJson();
             $problems = Problem::all();
 //            dd($problems);
@@ -56,7 +56,7 @@ class SetController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check() && (Auth::user()->user_level == 10 || Auth::user()->isAdmin())) {
+        if (Auth::check() && Auth::user()->user_level == 10) {
             try {
                 //Create Set
                 $set = new Set;

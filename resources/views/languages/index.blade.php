@@ -46,7 +46,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        @if(Auth::user()->user_level == 10 || Auth::user()->isAdmin())
+                        @if(Auth::user()->user_level == 10)
                             <div class="card card-block">
                                 <a href="{{ route('editproblem', $problem->id) }}" class="btn btn-success">Edit</a>
                             </div>
