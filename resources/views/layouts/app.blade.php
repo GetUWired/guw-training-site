@@ -77,6 +77,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     @if(Auth::user()->user_level == 10)
                                         <li><a href="/add-problem">Add Problem</a></li>
+                                        <li><a href="/sets/create">Add Set</a></li>
                                         <li><a href="{{ route('register') }}">Register</a></li>
                                     @endif
                                     <li>
