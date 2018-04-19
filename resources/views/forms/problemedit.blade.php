@@ -9,7 +9,7 @@
                 $question->id], 'class' =>'form-horizontal', 'id' => 'editProblem']) !!}
                 <div class="form-group">
                     <label for="problem">Problem</label>
-                    <input type="text" name="problem" class="form-control" value="{{ $question->question }}" required/>
+                    <textarea type="text" name="problem" class="form-control" required>{{ $question->question }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="type">Type</label>

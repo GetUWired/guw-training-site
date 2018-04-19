@@ -34,7 +34,7 @@
                                 <input type="checkbox" @click="toggleProblemCompletion($event)" name="{{ $problem->question }}" {{ $checked }} value="{{ $problem->id }}" >
                             </span></div>
                         <div class="panel-body">
-                            <h4><strong>Question:</strong> {{ $problem->question }}</h4>
+                            <p><strong>Question:</strong> {!! $problem->question !!}</p>
                             <hr>
                             <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $problem->id }}" aria-expanded="false" aria-controls="collapseExample">Show Hint</button>
                             <div class="collapse" id="collapse-{{ $problem->id }}">
@@ -46,7 +46,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        @if(Auth::user()->user_level == 10)
+                        @if(Auth::user()->user_level == 10 || Auth::user()->isAdmin())
                             <div class="card card-block">
                                 <a href="{{ route('editproblem', $problem->id) }}" class="btn btn-success">Edit</a>
                             </div>

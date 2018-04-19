@@ -8,7 +8,7 @@
                 {!! Form::open(['action' => 'ProblemController@store', 'class' => 'form-horizontal']) !!}
                 <div class="form-group">
                     <label for="problem">Problem</label>
-                    <input type="text" name="problem" class="form-control" required/>
+                    <textarea type="text" name="problem" class="form-control" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="type">Type</label>
