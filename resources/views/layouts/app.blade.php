@@ -111,7 +111,11 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('textarea').summernote()
+        $('textarea').summernote({
+            codemirror: {
+                theme: 'material'
+            }
+        })
     })
 </script>
 @include('layouts.flash-message')

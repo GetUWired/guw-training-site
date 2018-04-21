@@ -12,6 +12,11 @@ try {
     require('bootstrap-sass');
     require('summernote/dist/summernote.css');
     require('summernote');
+    require('codemirror/lib/codemirror');
+    require('codemirror/lib/codemirror.css');
+    require('codemirror/theme/material.css');
+    require('codemirror/mode/xml/xml');
+    
 } catch (e) {}
 
 /**
