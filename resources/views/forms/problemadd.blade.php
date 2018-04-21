@@ -31,10 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="hint">Hint</label>
-                    <div v-for="hint in hints">
-                        <textarea name="hint[]" class="form-control hintBox" v-model="hint.value"></textarea>
-                    </div>
-                    <a @click="addHint" class="btn btn-info btn-xs hintBtn">New Hint</a>
+                    <textarea name="hint" class="form-control hintBox"></textarea>
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Add New Problem', ['class' => 'btn btn-primary btn-block']) !!}

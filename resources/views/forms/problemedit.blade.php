@@ -9,7 +9,8 @@
                 $question->id], 'class' =>'form-horizontal', 'id' => 'editProblem']) !!}
                 <div class="form-group">
                     <label for="problem">Problem</label>
-                    <textarea type="text" name="problem" class="form-control" required>{{ $question->question }}</textarea>
+                    <textarea type="text" name="problem" class="form-control" required>{{ htmlentities($question->question)
+                    }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="type">Type</label>
@@ -19,7 +20,10 @@
                     <label for="points">Points</label>
                     <input type="number" name="points" class="form-control" required value="{{ $question->points }}"/>
                 </div>
-                <hint-component :hints-list="{{  $question->hints->toJson() }}"></hint-component>
+                <div class="form-group">
+                    <label for="hint">Hint</label>
+                    <textarea name="hint" class="form-control hintBox">{{ htmlentities($question->hints->hint) }}</textarea>
+                </div>
                 <div class="form-group">
                     {!! Form::submit('Update Problem', ['class' => 'btn btn-primary btn-block']) !!}
                 </div>

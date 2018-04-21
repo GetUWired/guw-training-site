@@ -39,11 +39,9 @@
                             <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $problem->id }}" aria-expanded="false" aria-controls="collapseExample">Show Hint</button>
                             <div class="collapse" id="collapse-{{ $problem->id }}">
                                 <h4><strong>Hint:</strong></h4>
-                                @foreach($problem->hints as $hint)
-                                    <div class="card card-block">
-                                       <code>{{ $hint->hint }}</code>
-                                    </div>
-                                @endforeach
+                                <div class="card card-block">
+                                   <code>{!! $problem->hints->hint !!}</code>
+                                </div>
                             </div>
                         </div>
                         @if(Auth::user()->user_level == 10)

@@ -18,7 +18,7 @@ class Problem extends Model
 
     public function hints()
     {
-        return $this->hasMany('App\Hint');
+        return $this->hasOne('App\Hint');
     }
 
     public function users()
