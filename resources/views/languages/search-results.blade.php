@@ -31,7 +31,7 @@
                                 <input type="checkbox" @click="toggleProblemCompletion($event)" name="{{ $problem->question }}" {{ $checked }} value="{{ $problem->id }}" >
                             </span></div>
                         <div class="panel-body">
-                            <h4><strong>Question:</strong> {{ $problem->question }}</h4>
+                            <h4><strong>Question:</strong> {!! $problem->question !!}</h4>
                             <hr>
                             <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $problem->id }}" aria-expanded="false" aria-controls="collapseExample">Show Hint</button>
                             <div class="collapse" id="collapse-{{ $problem->id }}">
