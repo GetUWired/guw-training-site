@@ -51,6 +51,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">Languages <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/problems/all') }}">All</a></li>
                                 <li><a href="{{ url('/problems/php') }}">PHP</a></li>
                                 <li><a href="{{ url('/problems/jquery') }}">jQuery</a></li>
                                 <li><a href="{{ url('/problems/javascript') }}">Javascript</a></li>

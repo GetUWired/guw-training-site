@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 
 class ProblemController extends Controller
 {
+    public function all()
+    {
+        $problemList = Problem::with('hints')->get();
+        $problemRelations = $this->get_user_problems();
+        $problem = 'All Types';
+        return view('languages.index', compact('problemList', 'problemRelations', 'problem'));
+    }
+    
     public function index($problem)
     {
         $problemList = Problem::where('type', $problem)->with('hints')->get();
-        $user = Auth::user();
-        $problemRelations = $user->problems()->get();
+        $problemRelations = $this->get_user_problems();
         
         return view('languages.index', compact('problemList', 'problemRelations', 'problem'));
     }
@@ -22,8 +29,7 @@ class ProblemController extends Controller
     public function show($problem)
     {
         $problem = Problem::where('id', $problem)->with('hints')->first();
-        $user = Auth::user();
-        $problemRelations = $user->problems()->get();
+        $problemRelations = $this->get_user_problems();
         
         return view('languages.show', compact('problem', 'problemRelations'));
     }
@@ -149,9 +155,18 @@ class ProblemController extends Controller
     public function search(Request $request)
     {
         $problemList = Problem::search($request->search_term)->get();
-        $user = Auth::user();
-        $problemRelations = $user->problems()->get();
+        $problemRelations = $this->get_user_problems();
         
         return view('languages.search-results', compact('problemList', 'problemRelations'));
+    }
+    
+    /**
+     * @return mixed
+     */
+    protected function get_user_problems()
+    {
+        $user = Auth::user();
+        $problemRelations = $user->problems()->get();
+        return $problemRelations;
     }
 }
