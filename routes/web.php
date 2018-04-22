@@ -29,6 +29,7 @@ Route::post('/problems/problem-completion', 'UserProblemController@store')->name
 Route::get('/problems/problem-completion-check', 'UserProblemController@problem_status')->name('problemstatus');
 
 //Languages Routes
+Route::get('problems/all', 'ProblemController@all')->name('allproblems')->middleware('auth');
 Route::get("/problems/{problem}", "ProblemController@index")->name('problems')->middleware('auth');
 Route::get('/problem/{problem}', "ProblemController@show")->name('singleproblem')->middleware('auth');
 Route::post('/problem/search', "ProblemController@search")->name('problem.search')->middleware('auth');

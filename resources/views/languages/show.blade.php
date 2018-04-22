@@ -6,10 +6,9 @@
         }}</span> Problem</h1></div>
         <div class="breadcrumbs">
             <a href="{{ ( url()->previous() != URL::current() ) ? url()->previous() : url('/sets') }}" class="btn
-            btn-info">Back to
-                Set</a>
+            btn-info">Back</a>
         </div>
-        <h3 class="text-center questionHeader">{{ $problem->question }}</h3>
+        <h3 class="text-center questionHeader">{!! $problem->question !!}</h3>
         @if($problem)
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -27,17 +26,21 @@
                             @else
                                 <?php $checked = ''; ?>
                             @endif&nbsp;&nbsp;
-                            <input type="checkbox" @click="toggleProblemCompletion($event)" name="{{ $problem->question }}" {{ $checked }} value="{{ $problem->id }}" >
+                            <input type="checkbox" @click="toggleProblemCompletion($event)" name="{{ $problem->question }}"
+                                   {{ $checked }} value="{{ $problem->id }}">
                         </span></div>
                     <div class="panel-body">
-                        <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $problem->id }}" aria-expanded="false" aria-controls="collapseExample">Show Hint</button>
+                        <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse"
+                                data-target="#collapse-{{ $problem->id }}" aria-expanded="false"
+                                aria-controls="collapseExample">Show Hint
+                        </button>
                         <div class="collapse" id="collapse-{{ $problem->id }}">
                             <h4><strong>Hint:</strong></h4>
-                            @foreach($problem->hints as $hint)
+                            @if($problem->hints)
                                 <div class="card card-block">
-                                   <code>{{ $hint->hint }}</code>
+                                    <code>{!! $problem->hints->hint !!}</code>
                                 </div>
-                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -45,13 +48,13 @@
         @else
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Problems</div>
-                            <div class="panel-body">
-                                <p>No results were found.</p>
-                            </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Problems</div>
+                        <div class="panel-body">
+                            <p>No results were found.</p>
                         </div>
                     </div>
+                </div>
             </div>
         @endif
     </div>

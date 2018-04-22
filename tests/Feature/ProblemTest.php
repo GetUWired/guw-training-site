@@ -53,7 +53,7 @@ class ProblemTest extends TestCase
                     'problem' => 'A test question',
                     'type' => 'php',
                     'points' => 20,
-                    'hint' => ['First Hint'],
+                    'hint' => 'First Hint',
                     '_token' => csrf_token()
                 ]);
 
@@ -86,7 +86,7 @@ class ProblemTest extends TestCase
     {
         $user = factory(\App\User::class)->create([
             'password' => bcrypt('test1234'),
-            'user_level' => 1
+            'user_level' => 0
         ]);
 
         $response = $this->actingAs($user)
@@ -106,7 +106,7 @@ class ProblemTest extends TestCase
     public function testUserSeeProblemPageWhenNoProblemsCompleted()
     {
         $user = factory(\App\User::class)->create([
-            'user_level' => 1
+            'user_level' => 0
         ]);
 
         $problems = factory(\App\Problem::class, 10)->create([
@@ -122,7 +122,7 @@ class ProblemTest extends TestCase
     public function testProblemPageHasVariables()
     {
         $user = factory(\App\User::class)->create([
-            'user_level' => 1
+            'user_level' => 0
         ]);
 
         $response = $this->actingAs($user)
@@ -134,7 +134,7 @@ class ProblemTest extends TestCase
     public function testAuthenticatedUserCanViewSingleProblemPage()
     {
         $user = factory(\App\User::class)->create([
-            'user_level' => 1
+            'user_level' => 0
         ]);
 
         $problems = factory(\App\Problem::class, 10)->create();
